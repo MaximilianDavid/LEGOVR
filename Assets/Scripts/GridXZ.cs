@@ -6,10 +6,6 @@ using MyUtilities;
 
 public class GridXZ<TGridObject>
 {
-    public const int HEAT_MAP_MAX_VALUE = 100;
-    public const int HEAT_MAP_MIN_VALUE = 0;
-
-
     public Color debugLineColor = Color.white;
 
     private int width;
@@ -17,7 +13,8 @@ public class GridXZ<TGridObject>
     private float cellSize;
     private Vector3 originPosition;
 
-    private TGridObject[,] gridArray;
+
+    [SerializeField] private TGridObject[,] gridArray;
     private TextMesh[,] debugTextArray;
 
 
@@ -28,7 +25,16 @@ public class GridXZ<TGridObject>
         public int z;
     }
 
-    public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject>  createGridObject)
+
+
+
+
+    public GridXZ(
+        int width, 
+        int height, 
+        float cellSize, 
+        Vector3 originPosition, 
+        Func<GridXZ<TGridObject>, int, int, TGridObject>  createGridObject)
     {
         this.width = width;
         this.height = height;
@@ -37,7 +43,7 @@ public class GridXZ<TGridObject>
 
         gridArray = new TGridObject[width, height];
 
-
+        // Fill the grid with empty grid objects
         for(int x = 0; x < gridArray.GetLength(0); x++)
         {
             for(int z = 0; z < gridArray.GetLength(1); z++)
@@ -45,25 +51,21 @@ public class GridXZ<TGridObject>
                 gridArray[x, z] = createGridObject(this, x, z);
             }
         }
-
-
-
-        
-
     }
 
 
 
+    /*
+     *  Draws a visualisation of the grid
+     */
     public void drawGridLines()
     {
-        //bool showDebug = true;
         Debug.DrawLine(GetWorldPosition(0, 0), GetWorldPosition(0, 0) + new Vector3(0, 1, 0), Color.red, 100f);
         debugTextArray = new TextMesh[width, height];
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
-                //debugTextArray[x, z] = MyUtils.CreateWorldText(gridArray[x, z]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, cellSize) * 0.5f, 1, Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), debugLineColor, 100f);
                 Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), debugLineColor, 100f);
             }
@@ -74,7 +76,7 @@ public class GridXZ<TGridObject>
 
         OnGridValueChanged += (object sender, OnGridValueChangedEvenArgs evenArgs) =>
         {
-                //debugTextArray[evenArgs.x, evenArgs.z].text = gridArray[evenArgs.x, evenArgs.z]?.ToString();
+                debugTextArray[evenArgs.x, evenArgs.z].text = gridArray[evenArgs.x, evenArgs.z]?.ToString();
         };
     }
 
@@ -110,8 +112,33 @@ public class GridXZ<TGridObject>
     }
 
 
+    /*
+     *  Returns the world position of a grid object depending on its given 
+     *  grid position and its scriptable object type
+     */
+    public Vector3 GetWorldPosition(int x, int z, PlacedObjectTypeSO.Dir dir)
+    {
+        // Offset the origin of the brick by the error caused by the given rotation
+        switch(dir)
+        {
+            default:
+            case PlacedObjectTypeSO.Dir.Down:
+                return new Vector3(x, 0, z) * cellSize + originPosition;
+            case PlacedObjectTypeSO.Dir.Up:
+                return new Vector3(x + 1, 0, z + 1) * cellSize + originPosition;
+            case PlacedObjectTypeSO.Dir.Left:
+                return new Vector3(x, 0, z + 1) * cellSize + originPosition;
+            case PlacedObjectTypeSO.Dir.Right:
+                return new Vector3(x + 1, 0, z) * cellSize + originPosition;
+
+        }
+    }
 
 
+
+    /*
+     *  Returns the coordinates within the grid for a given world position
+     */
     public void GetXZ(Vector3 worldPosition, out int x, out int z)
     { 
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
@@ -121,6 +148,10 @@ public class GridXZ<TGridObject>
     }
 
 
+
+    /*
+     *  Sets the object at the given world postion to the given value
+     */
     public void SetGridObject(Vector3 worldPosition, TGridObject value)
     {
         int x, z;
@@ -132,6 +163,9 @@ public class GridXZ<TGridObject>
 
 
 
+    /*
+     *  Sets the object at the given grid postion to the given value
+     */
     public void SetGridObject(int x, int z, TGridObject value)
     {
         if(x >= 0 && x >= 0 && x < width && z < height)
@@ -147,7 +181,9 @@ public class GridXZ<TGridObject>
 
 
 
-
+    /*
+     *  Triggers the OnGridValueChanged event
+     */
     public void TriggerGridObejectChanged(int x, int z)
     {
         if (OnGridValueChanged != null)
@@ -157,6 +193,10 @@ public class GridXZ<TGridObject>
     }
 
 
+
+    /*
+     *  Returns the grid object at the given grid coordinates
+     */
     public TGridObject GetGridObject(int x, int z)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
@@ -170,6 +210,10 @@ public class GridXZ<TGridObject>
     }
 
 
+
+    /*
+     *  Returns the grid object located at the given world postion
+     */
     public TGridObject GetGridObject(Vector3 worldPosition)
     {
         int x, z;
