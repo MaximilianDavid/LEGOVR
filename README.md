@@ -21,7 +21,7 @@ It is possible that bricks get stuck to the model of the controller. If this hap
 
 ![Bricks](https://user-images.githubusercontent.com/72796522/187219613-3445213d-666a-498f-9a27-41c37fc3d6e4.JPG)
 
-Afterwards all bricks contained within the "Bricks" list of the BasePlate's "Grid Building System VR" script need to be deleted.
+Afterwards, all bricks contained within the "Bricks" list of the BasePlate's "Grid Building System VR" script need to be deleted.
 
 ![BasePlateBefore](https://user-images.githubusercontent.com/72796522/187220087-572f1d2a-6d71-4789-b15b-ad2f0a93af4a.JPG)
 
