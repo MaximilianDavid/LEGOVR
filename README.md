@@ -9,7 +9,7 @@ This is the prototype used for the pilot studies, comparing building with bricks
 4. Open MainScene located in Assests > Scenes
 5. Run the Project
 
-## Known Bugs
+## Brick is stuck to hand bug
 It is possible that bricks get stuck to the model of the controller. If this happens, the bricks prefab within the scene needs to be duplicated and the old copy needs to be deleted.
 
 ![Bricks](https://user-images.githubusercontent.com/72796522/187219613-3445213d-666a-498f-9a27-41c37fc3d6e4.JPG)
