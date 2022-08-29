@@ -4,6 +4,6 @@ This is the prototype used for the pilot studies, comparing building with bricks
 
 ## Instructions
 1. Download the code or clone the repository
-2. Open with a Unity Editor with Version
+2. Open with a Unity Editor with Version 2021.x
 3. Open MainScene
 4. Run the Project
