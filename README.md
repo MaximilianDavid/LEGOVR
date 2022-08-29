@@ -3,7 +3,7 @@ This is the prototype used for the pilot studies, comparing building with bricks
 
 
 ## Instructions
-1. Clone Repository
+1. Download or clone the repository
 2. Open with a Unity Editor with Version
 3. Open MainScene
 4. Run the Project
