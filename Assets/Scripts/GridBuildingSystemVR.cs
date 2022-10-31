@@ -988,7 +988,7 @@ public class GridBuildingSystemVR : MonoBehaviour
         public void SetPlacedObject(PlacedObject placedObject)
         {
             this.placedObject = placedObject;
-            grid.TriggerGridObejectChanged(x, z);
+            //grid.TriggerGridObejectChanged(x, z);
         }
 
 
@@ -1002,7 +1002,7 @@ public class GridBuildingSystemVR : MonoBehaviour
         public void ClearPlacedObject()
         {
             placedObject = null;
-            grid.TriggerGridObejectChanged(x, z);
+            //grid.TriggerGridObejectChanged(x, z);
         }
 
         public bool CanBuild()
