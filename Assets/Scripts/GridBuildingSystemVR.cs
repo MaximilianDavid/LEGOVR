@@ -97,6 +97,8 @@ public class GridBuildingSystemVR : MonoBehaviour
         PlacedObject heldBrick = currentlyHeldPlacedObject;
         GameObject heldVisualBrick = heldBrick.VisualBrick;
 
+        // Turn on Collisions again
+        heldBrick.ignoreCollisions(false);
 
         // Reset currently held Object
         currentlyHeldObject = null;
@@ -241,7 +243,8 @@ public class GridBuildingSystemVR : MonoBehaviour
         currentlyHeldPlacedObject = placedObject;
         currentlyHeldObject = placedObject.transform;
         placedObjectTypeSO = placedObject.placedObjectTypeSO;
-        MyUtilities.MyUtils.SetLayerRecursively(currentlyHeldPlacedObject.gameObject, 0);
+        placedObject.ignoreCollisions();
+        //MyUtilities.MyUtils.SetLayerRecursively(currentlyHeldPlacedObject.gameObject, 0);
 
         RefreshSelectedObjectType();
 

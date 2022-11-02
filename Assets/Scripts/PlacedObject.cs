@@ -332,6 +332,23 @@ public class PlacedObject : MonoBehaviour
         rigidbody.isKinematic = false;
     }
 
+
+    public void ignoreCollisions(bool ignore = true)
+    {
+        if(ignore)
+        {
+            MyUtilities.MyUtils.SetLayerRecursively(this.gameObject, 13);
+            Debug.Log("Making " + this.ToString() + "Ignore Collisions!");
+        }
+        else
+        {
+            MyUtilities.MyUtils.SetLayerRecursively(this.gameObject, 12);
+            Debug.Log("Making " + this.ToString() + "Receive Collisions!");
+        }
+    }
+
+
+
     public bool HasBaseSupport()
     {
         return hasBaseSupport;
