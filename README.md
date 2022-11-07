@@ -1,5 +1,5 @@
 # VRBrickBuilder
-This is the prototype used for the pilot studies, comparing building with bricks in VR and real life. This prototype was developed as part of a big master project for the serious games chair at the university of bayreuth.
+This system was used to conduct pilot studies for the big master project and is currently under developement for a user study as part of a master thesis.
 
 
 
