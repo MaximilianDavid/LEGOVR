@@ -140,7 +140,8 @@ public class GridBuildingSystemVR : MonoBehaviour
 
             snapPoint = GetSnapPoint(heldBrick);
             int gridNumberForBuild = GetGridNumber(new Vector3(snapPoint.x, snapPoint.y + brickHeight * 0.5f, snapPoint.z));
-            grids[gridNumberForBuild].GetXZ(raycastHit.point, out int x, out int z);
+            //grids[gridNumberForBuild].GetXZ(raycastHit.point, out int x, out int z);
+            grids[gridNumberForBuild].GetXZ(snapPoint, out int x, out int z);
 
             Debug.Log("Grid number: " + gridNumberForBuild);
 
@@ -543,8 +544,41 @@ public class GridBuildingSystemVR : MonoBehaviour
         if (placedObject == null)
             throw new CannotBuildHereException();
 
-        GameObject anchor = placedObject.Anchor;
+        GameObject anchor;
         GameObject visualBrick = placedObject.VisualBrick;
+
+        // Calculate closest snapping direction
+        PlacedObjectTypeSO.Dir dir = placedObject.GetClosestDir();
+        Debug.Log("Orientation: " + dir);
+
+        // Set anchor according to rotation
+        switch(dir)
+        {
+            // Brick rotated by 90°
+            case PlacedObjectTypeSO.Dir.Left:
+                anchor = placedObject.BackRightAnchor;
+                break;
+
+            // Brick rotated by 180°
+            case PlacedObjectTypeSO.Dir.Up:
+                anchor = placedObject.BackLeftAnchor;
+                break;
+
+            // Brick rotated by 270°
+            case PlacedObjectTypeSO.Dir.Right:
+                anchor = placedObject.FrontLeftAnchor;
+                break;
+
+            // Brick not rotated
+            case PlacedObjectTypeSO.Dir.Down:
+            default:
+                anchor = placedObject.Anchor;
+                break;
+        }
+
+        anchor.SetActive(true);
+        Debug.Log("Activated " + anchor);
+        
 
         LayerMask mask = LayerMask.GetMask("GridBuildingSystem", "Brick");
         Physics.Raycast(anchor.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
@@ -565,8 +599,18 @@ public class GridBuildingSystemVR : MonoBehaviour
         grids[gridNumber].GetXZ(raycastHit.point, out int x, out int z);
 
 
-        // Calculate closest snapping direction
-        PlacedObjectTypeSO.Dir dir = placedObject.GetClosestDir();
+        // Handle Edge cases
+        if (x == gridLength)
+            x -= 1;
+        if (x == -1)
+            x = 0;
+        if (z == gridWidth)
+            z -= 1;
+        if (z == -1)
+            z = 0;
+
+
+        
 
 
 
