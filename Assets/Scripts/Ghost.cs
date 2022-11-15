@@ -54,12 +54,14 @@ public class Ghost : MonoBehaviour
 
 
             // Get the position and rotation to display the preview
-            Vector3 targetPosition = GridBuildingSystemVR.Instance.GetSnapPoint(GridBuildingSystemVR.Instance.GetCurrentlyHeldPlacedObject());
+            SnapPoint snapPoint = GridBuildingSystemVR.Instance.GetSnapPoint(GridBuildingSystemVR.Instance.GetCurrentlyHeldPlacedObject());
+            Vector3 targetPosition = snapPoint.worldLocation;
 
             if (visual == null)
                 RefreshVisual();
 
             transform.position = targetPosition;
+            //Debug.Log("Ghost Position: " + targetPosition);
             transform.rotation = GridBuildingSystemVR.Instance.GetPlacedObjectRotation();
         }
         catch (Exception e)
