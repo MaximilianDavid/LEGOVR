@@ -632,6 +632,7 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         // Calculate the grid number to snap the brick into
         int gridNumberForBuild = 0;
+
         if (highestBrickBetween != null)
         {
             gridNumberForBuild = GetBuildableGridNumber(gridPositionList, GetGridNumber(
@@ -644,6 +645,15 @@ public class GridBuildingSystemVR : MonoBehaviour
         {
             gridNumberForBuild = GetBuildableGridNumber(gridPositionList, gridNumber);
         }
+
+
+        // Reduce grid number until brick has base support
+        while(!HasPotentialSupport(gridPositionList, gridNumberForBuild))
+        {
+            gridNumberForBuild = GetBuildableGridNumber(gridPositionList, gridNumberForBuild - 1);
+        }
+
+     
 
 
         // Return the snapped position for the brick
@@ -665,6 +675,31 @@ public class GridBuildingSystemVR : MonoBehaviour
         }
     }
 
+
+
+
+
+
+
+
+    public bool HasPotentialSupport(List<Vector2Int> gridPositionList, int gridNumber = 0)
+    {
+        // Bricks on Baseplate always have support
+        if (gridNumber == 0)
+            return true;
+
+
+        // Check if any of the downward positions are occupied
+        foreach(Vector2Int gridPosition in gridPositionList)
+        {
+            if(!grids[gridNumber-1].GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 
@@ -778,6 +813,7 @@ public class GridBuildingSystemVR : MonoBehaviour
                     RemoveAllConnectionsOf(brick);
                     RemoveFromGrid(brick);
                     brick.makePhysicsEnabled();
+                    brick.ignoreCollisions(false);
                 }
             }
         }
@@ -808,7 +844,8 @@ public class GridBuildingSystemVR : MonoBehaviour
         placedObject.SetBaseSupport(false);
         placedObject.SetGridNumber(-1);
         // Remove from Bricks Layer
-        MyUtilities.MyUtils.SetLayerRecursively(placedObject.gameObject, 0);
+        //MyUtilities.MyUtils.SetLayerRecursively(placedObject.gameObject, 0);
+        // ^ obsolete since pickup already handles this for picked up bricks
     }
 
 
