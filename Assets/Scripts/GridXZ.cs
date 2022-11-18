@@ -137,14 +137,25 @@ public class GridXZ<TGridObject>
 
 
     /*
-     *  Returns the coordinates within the grid for a given world position
+     *  Returns the coordinates rounded down within the grid for a given world position
      */
-    public void GetXZ(Vector3 worldPosition, out int x, out int z)
+    public void GetXZFloor(Vector3 worldPosition, out int x, out int z)
     { 
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
-
         //Debug.Log("X: " + x + " Z: " + z);
+    }
+
+
+    /*
+     *  Returns the nearest coordinates within the grid for a given world position
+     */
+    public void GetXZ(Vector3 worldPosition, out int x, out int z)
+    {
+        x = Mathf.RoundToInt((worldPosition - originPosition).x / cellSize);
+        z = Mathf.RoundToInt((worldPosition - originPosition).z / cellSize);
+        Debug.Log("X: " + (worldPosition - originPosition).x / cellSize + " Z: " + (worldPosition - originPosition).z / cellSize);
+        Debug.Log("X rounded: " + x + " Z rounded: " + z);
     }
 
 

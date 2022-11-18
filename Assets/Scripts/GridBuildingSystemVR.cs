@@ -48,7 +48,7 @@ public class GridBuildingSystemVR : MonoBehaviour
     [SerializeField] private List<List<PlacedObject>> placedBricks = new List<List<PlacedObject>>();
 
 
-    private PlacedObjectTypeSO placedObjectTypeSO;
+    private PlacedObjectTypeSO placedObjectTypeSO = null;
 
 
 
@@ -109,7 +109,7 @@ public class GridBuildingSystemVR : MonoBehaviour
         ghost.Deactivate();
 
 
-        Vector3 snapPoint = Vector3.zero;
+        SnapPoint snapPoint;
 
 
         anchorLineRenderer.enabled = false;
@@ -133,17 +133,24 @@ public class GridBuildingSystemVR : MonoBehaviour
         {
             // Calculate the snap point for the held brick
             LayerMask mask = LayerMask.GetMask("GridBuildingSystem", "Brick");
-            Physics.Raycast(heldBrick.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
+            //Physics.Raycast(heldBrick.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
 
+            /*
             if (!raycastHit.collider)
                 throw new CannotBuildHereException();
-
+            */
+            Debug.Log("Calculating Snap Point!");
             snapPoint = GetSnapPoint(heldBrick);
-            int gridNumberForBuild = GetGridNumber(new Vector3(snapPoint.x, snapPoint.y + brickHeight * 0.5f, snapPoint.z));
-            grids[gridNumberForBuild].GetXZ(raycastHit.point, out int x, out int z);
+            Debug.Log("Snap Point Calculated! " + snapPoint);
+
+            int gridNumberForBuild = snapPoint.gridNumber;
+            //int gridNumberForBuild = GetGridNumber(new Vector3(snapPoint.x, snapPoint.y + brickHeight * 0.5f, snapPoint.z));
+            //grids[gridNumberForBuild].GetXZ(raycastHit.point, out int x, out int z);
+            //grids[gridNumberForBuild].GetXZ(snapPoint, out int x, out int z);
 
             Debug.Log("Grid number: " + gridNumberForBuild);
 
+            /*
             if (absDifX > maximumAngleCorrection)
             {
                 Debug.Log("Angle on X too far!");
@@ -161,17 +168,18 @@ public class GridBuildingSystemVR : MonoBehaviour
                 Debug.Log("Collision too far away!");
                 throw new CannotBuildHereException();
             }
-
+            */
 
             if (gridNumberForBuild >= 0)
             {
                 PlacedObjectTypeSO.Dir dir = heldBrick.GetClosestDir();
-                List<Vector2Int> gridPositionList = heldBrick.placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z), dir);
+                //List<Vector2Int> gridPositionList = heldBrick.placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z), dir);
+                List<Vector2Int> gridPositionList = heldBrick.placedObjectTypeSO.GetGridPositionList(snapPoint.gridLocation, dir);
                 Vector2Int rotationOffset = heldBrick.placedObjectTypeSO.GetRotationOffset(dir);
                 heldBrick.SetBaseSupport(true);
                 heldBrick.IsPlacedInGrid = true;
                 heldBrick.makeKinematic();
-                brickTransform.position = snapPoint;
+                brickTransform.position = snapPoint.worldLocation;
                 brickTransform.rotation = GetPlacedObjectRotation(heldBrick);
 
                 Debug.Log("Brick occupies:");
@@ -391,7 +399,9 @@ public class GridBuildingSystemVR : MonoBehaviour
         {
 
             // Get all corners of held brick
-            GameObject anchor = currentlyHeldPlacedObject.Anchor;
+            //GameObject anchor = currentlyHeldPlacedObject.Anchor;
+            GameObject anchor = currentlyHeldPlacedObject.GetAnchorForCurrentRotation();
+            GameObject mainAnchor = currentlyHeldPlacedObject.Anchor;
             GameObject frontLeftAnchor = currentlyHeldPlacedObject.FrontLeftAnchor;
             GameObject backLeftAnchor = currentlyHeldPlacedObject.BackLeftAnchor;
             GameObject backRightAnchor = currentlyHeldPlacedObject.BackRightAnchor;
@@ -413,13 +423,18 @@ public class GridBuildingSystemVR : MonoBehaviour
             RaycastHit hit;
             LayerMask previewMask = LayerMask.GetMask("GridBuildingSystem", "Brick");
             Vector3 floorNormal = new Vector3(currentlyHeldObject.position.x, 0, currentlyHeldObject.position.z).normalized;
-            Physics.Raycast(currentlyHeldObject.position, Vector3.down, out hit, 999f, previewMask);
+            //Physics.Raycast(currentlyHeldObject.position, Vector3.down, out hit, 999f, previewMask);
+            Physics.Raycast(anchor.transform.position, Vector3.down, out hit, 999f, previewMask);
             if (hit.collider)
             {
+                /*
                 // Get Gridnumbers
                 int hitGridNumber = GetGridNumber(hit.point);
                 int heldGridNumber = GetGridNumber(new Vector3(anchor.transform.position.x, anchor.transform.position.y + brickHeight*0.5f, anchor.transform.position.z));
-                grids[heldGridNumber].GetXZ(anchor.transform.position, out int heldX, out int heldZ);
+                //grids[heldGridNumber].GetXZ(anchor.transform.position, out int heldX, out int heldZ);
+                Vector3 snapPoint = GetSnapPoint(currentlyHeldPlacedObject);
+                int heldX = (int)snapPoint.x;
+                int heldZ = (int)snapPoint.z;
                 currentlyHeldPlacedObject.SetOrigin(new Vector2Int(heldX, heldZ));
                 currentlyHeldPlacedObject.SetDir(currentlyHeldPlacedObject.GetClosestDir());
 
@@ -432,15 +447,17 @@ public class GridBuildingSystemVR : MonoBehaviour
                 // Set collision distance to correct value
                 if (highestBrick != null)
                 {
-                    Vector3 relHeldPosition = new Vector3(0, currentlyHeldObject.position.y, 0);
+                    //Vector3 relHeldPosition = new Vector3(0, currentlyHeldObject.position.y, 0);
+                    Vector3 relHeldPosition = new Vector3(0, anchor.transform.position.y, 0);
                     Vector3 relBrickPosition = new Vector3(0, highestBrick.transform.position.y + brickHeight, 0);
                     distanceToCollision = Mathf.Abs(Vector3.Distance(relHeldPosition, relBrickPosition));
                 }
                 else
                 {
-                    distanceToCollision = Mathf.Abs(Vector3.Distance(hit.point, currentlyHeldObject.position));
+                    //distanceToCollision = Mathf.Abs(Vector3.Distance(hit.point, currentlyHeldObject.position));
+                    distanceToCollision = Mathf.Abs(Vector3.Distance(hit.point, anchor.transform.position));
                 }
-
+                */
 
                 // Display Guide Lines
                 anchorLineRenderer.enabled = true;
@@ -448,8 +465,8 @@ public class GridBuildingSystemVR : MonoBehaviour
                 backLeftLineRenderer.enabled = true;
                 backRightLineRenderer.enabled = true;
 
-                anchorLineRenderer.SetPosition(0, anchor.transform.position);
-                anchorLineRenderer.SetPosition(1, new Vector3(anchor.transform.position.x, hit.point.y, anchor.transform.position.z));
+                anchorLineRenderer.SetPosition(0, mainAnchor.transform.position);
+                anchorLineRenderer.SetPosition(1, new Vector3(mainAnchor.transform.position.x, hit.point.y, mainAnchor.transform.position.z));
 
                 frontLeftLineRenderer.SetPosition(0, frontLeftAnchor.transform.position);
                 frontLeftLineRenderer.SetPosition(1, new Vector3(frontLeftAnchor.transform.position.x, hit.point.y, frontLeftAnchor.transform.position.z));
@@ -483,13 +500,15 @@ public class GridBuildingSystemVR : MonoBehaviour
             if(distanceToCollision > maximumSnapDistance && ghost.IsActive())
             {
                 ghost.Deactivate();
+                Debug.Log("Deactivating ghost due to high distance");
             }
 
 
 
         }
         else
-        { if (ghost.IsActive())
+        {
+            if (ghost.IsActive())
                 ghost.Deactivate();
         }
     }
@@ -532,19 +551,25 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
-
+   
 
 
     /*
      *  Calculates a snap point for the given brick object
      */
-    public Vector3 GetSnapPoint(PlacedObject placedObject)
+    public SnapPoint GetSnapPoint(PlacedObject placedObject)
     {
         if (placedObject == null)
             throw new CannotBuildHereException();
 
-        GameObject anchor = placedObject.Anchor;
+        GameObject anchor = placedObject.GetAnchorForCurrentRotation();
         GameObject visualBrick = placedObject.VisualBrick;
+
+        // Calculate closest snapping direction
+        PlacedObjectTypeSO.Dir dir = placedObject.GetClosestDir();
+        //Debug.Log("Orientation: " + dir);
+
+        
 
         LayerMask mask = LayerMask.GetMask("GridBuildingSystem", "Brick");
         Physics.Raycast(anchor.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
@@ -562,16 +587,40 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         // Calculate gridNumber of where the rayCast hits
         int gridNumber = GetGridNumber(raycastHit.point);
-        grids[gridNumber].GetXZ(raycastHit.point, out int x, out int z);
+        grids[gridNumber].GetXZ(raycastHit.point, out int hitX, out int hitZ);
 
 
-        // Calculate closest snapping direction
-        PlacedObjectTypeSO.Dir dir = placedObject.GetClosestDir();
+        // Handle Edge cases
+        if (hitX == gridLength)
+            hitX -= 1;
+        if (hitX == -1)
+            hitX = 0;
+        if (hitZ == gridWidth)
+            hitZ -= 1;
+        if (hitZ == -1)
+            hitZ = 0;
 
 
+
+
+
+        // Shift main snappoint according to current rotation
+        Vector3 snapWorldLocation = grids[gridNumber].GetWorldPosition(hitX, hitZ);
+        snapWorldLocation = ShiftAnchorSnapToMainAnchorSnap(snapWorldLocation, dir, placedObject.placedObjectTypeSO);
+        grids[gridNumber].GetXZ(snapWorldLocation, out int x, out int z);
+        Vector2Int anchorLocationOnGrid = new Vector2Int(x, z);
+        Debug.Log("Grid location after shifting: " + anchorLocationOnGrid);
+
+
+        SnapPoint snapPoint = new SnapPoint(gridNumber, snapWorldLocation, anchorLocationOnGrid);
 
         
-        List<Vector2Int> gridPositionList = placedObject.placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z), dir);
+        List<Vector2Int> gridPositionList = placedObject.placedObjectTypeSO.GetGridPositionList(anchorLocationOnGrid, dir);
+        Debug.Log("Grid positions:");
+        foreach(Vector2Int gridPos in gridPositionList)
+        {
+            Debug.Log(gridPos);
+        }
 
         // Calculate highest Brick if there is a Brick between the RaycastHit and the held position
         PlacedObject highestBrickBetween = CalculateHighestBrickBetween(gridNumber, heldInGridNumber, gridPositionList);
@@ -579,6 +628,7 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         // Calculate the grid number to snap the brick into
         int gridNumberForBuild = 0;
+
         if (highestBrickBetween != null)
         {
             gridNumberForBuild = GetBuildableGridNumber(gridPositionList, GetGridNumber(
@@ -593,6 +643,15 @@ public class GridBuildingSystemVR : MonoBehaviour
         }
 
 
+        // Reduce grid number until brick has base support
+        while(!HasPotentialSupport(gridPositionList, gridNumberForBuild))
+        {
+            gridNumberForBuild = GetBuildableGridNumber(gridPositionList, gridNumberForBuild - 1);
+        }
+
+     
+
+
         // Return the snapped position for the brick
         if (gridNumberForBuild >= 0)
         {
@@ -601,7 +660,10 @@ public class GridBuildingSystemVR : MonoBehaviour
                 grids[gridNumberForBuild].GetWorldPosition(x, z, dir) 
                 + new Vector3(0, grids[gridNumberForBuild].GetOriginPosition().y - grids[0].GetOriginPosition().y, 0);
 
-            return placedObjectWorldPosition;
+            snapPoint.gridNumber = gridNumberForBuild;
+            snapPoint.worldLocation = placedObjectWorldPosition;
+
+            return snapPoint;
         }
         else
         {
@@ -609,6 +671,87 @@ public class GridBuildingSystemVR : MonoBehaviour
         }
     }
 
+
+
+
+
+
+
+
+    public bool HasPotentialSupport(List<Vector2Int> gridPositionList, int gridNumber = 0)
+    {
+        // Bricks on Baseplate always have support
+        if (gridNumber == 0)
+            return true;
+
+
+        // Check if any of the downward positions are occupied
+        foreach(Vector2Int gridPosition in gridPositionList)
+        {
+            if(!grids[gridNumber-1].GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+    /*
+     *  Returns the position that equals the snap point for the 
+     *  main anchor of the given brick type with the given orientation
+     */
+    public Vector3 ShiftAnchorSnapToMainAnchorSnap(
+        Vector3 snapPoint, 
+        PlacedObjectTypeSO.Dir dir, 
+        PlacedObjectTypeSO placedObjectTypeSO)
+    {
+        Vector3 mainSnapPoint = Vector3.zero;
+
+        switch(dir)
+        {
+            // Shift anchor to the left by width
+            case PlacedObjectTypeSO.Dir.Left:
+                Debug.Log("Shifting Left by" + placedObjectTypeSO.width);
+                mainSnapPoint = ShiftBySquares(snapPoint, placedObjectTypeSO.width - 1, 0);
+                break;
+
+            // Shift anchor upwards by width and left by height
+            case PlacedObjectTypeSO.Dir.Up:
+                mainSnapPoint = ShiftBySquares(snapPoint, placedObjectTypeSO.height - 1, placedObjectTypeSO.width - 1);
+                break;
+
+            // Shift anchor up by height
+            case PlacedObjectTypeSO.Dir.Right:
+                mainSnapPoint = ShiftBySquares(snapPoint, 0, placedObjectTypeSO.height - 1);
+                break;
+
+
+            case PlacedObjectTypeSO.Dir.Down:
+            default:
+                mainSnapPoint = snapPoint;
+                break;
+        }
+
+        return mainSnapPoint;
+    }
+
+
+
+    /*
+     *  Shifts the given position equal to the amount in given grid spaces
+     */
+    public Vector3 ShiftBySquares(Vector3 position, int z, int x)
+    {
+        float shiftedZ = position.z + z * cellSize;
+        float shiftedX = position.x + x * cellSize;
+
+        return new Vector3(shiftedX, position.y, shiftedZ);
+    }
 
 
 
@@ -666,6 +809,7 @@ public class GridBuildingSystemVR : MonoBehaviour
                     RemoveAllConnectionsOf(brick);
                     RemoveFromGrid(brick);
                     brick.makePhysicsEnabled();
+                    brick.ignoreCollisions(false);
                 }
             }
         }
@@ -695,6 +839,9 @@ public class GridBuildingSystemVR : MonoBehaviour
         placedObject.IsPlacedInGrid = false;
         placedObject.SetBaseSupport(false);
         placedObject.SetGridNumber(-1);
+        // Remove from Bricks Layer
+        //MyUtilities.MyUtils.SetLayerRecursively(placedObject.gameObject, 0);
+        // ^ obsolete since pickup already handles this for picked up bricks
     }
 
 

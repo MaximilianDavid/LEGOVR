@@ -186,6 +186,45 @@ public class PlacedObject : MonoBehaviour
 
 
 
+    /*
+     *  Returns the anchor that lines up with the grid anchors for its current rotation
+     */
+    public GameObject GetAnchorForCurrentRotation()
+    {
+        PlacedObjectTypeSO.Dir dir = this.GetClosestDir();
+
+
+        GameObject anchor;
+        // Set anchor according to rotation
+        switch (dir)
+        {
+            // Brick rotated by 90°
+            case PlacedObjectTypeSO.Dir.Left:
+                anchor = this.BackRightAnchor;
+                break;
+
+            // Brick rotated by 180°
+            case PlacedObjectTypeSO.Dir.Up:
+                anchor = this.BackLeftAnchor;
+                break;
+
+            // Brick rotated by 270°
+            case PlacedObjectTypeSO.Dir.Right:
+                anchor = this.FrontLeftAnchor;
+                break;
+
+            // Brick not rotated
+            case PlacedObjectTypeSO.Dir.Down:
+            default:
+                anchor = this.Anchor;
+                break;
+        }
+
+        return anchor;
+    }
+
+
+
 
     /*
      *  Resets the object to its starting position
@@ -342,7 +381,7 @@ public class PlacedObject : MonoBehaviour
         }
         else
         {
-            MyUtilities.MyUtils.SetLayerRecursively(this.gameObject, 12);
+            MyUtilities.MyUtils.SetLayerRecursively(this.gameObject, 0);
             Debug.Log("Making " + this.ToString() + "Receive Collisions!");
         }
     }
