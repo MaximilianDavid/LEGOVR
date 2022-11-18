@@ -571,10 +571,6 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         
 
-        anchor.SetActive(true);
-        //Debug.Log("Activated " + anchor);
-        
-
         LayerMask mask = LayerMask.GetMask("GridBuildingSystem", "Brick");
         Physics.Raycast(anchor.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
 
