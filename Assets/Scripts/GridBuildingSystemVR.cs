@@ -423,8 +423,14 @@ public class GridBuildingSystemVR : MonoBehaviour
             RaycastHit hit;
             LayerMask previewMask = LayerMask.GetMask("GridBuildingSystem", "Brick");
             Vector3 floorNormal = new Vector3(currentlyHeldObject.position.x, 0, currentlyHeldObject.position.z).normalized;
-            //Physics.Raycast(currentlyHeldObject.position, Vector3.down, out hit, 999f, previewMask);
-            Physics.Raycast(anchor.transform.position, Vector3.down, out hit, 999f, previewMask);
+
+            Physics.queriesHitBackfaces = true;
+            if(anchor.transform.position.y < this.parentTransform.position.y)
+                Physics.Raycast(anchor.transform.position, Vector3.up, out hit, 999f, previewMask);
+            else
+                Physics.Raycast(anchor.transform.position, Vector3.down, out hit, 999f, previewMask);
+            Physics.queriesHitBackfaces = false;
+
             if (hit.collider)
             {
                 /*
@@ -572,10 +578,20 @@ public class GridBuildingSystemVR : MonoBehaviour
         
 
         LayerMask mask = LayerMask.GetMask("GridBuildingSystem", "Brick");
-        Physics.Raycast(anchor.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
+        //Physics.Raycast(anchor.transform.position, Vector3.down, out RaycastHit raycastHit, 99f, mask);
+
+        Physics.queriesHitBackfaces = true;
+        // ^ Needs to be enabled in case the anchor is inside the grid's collider
+        RaycastHit raycastHit;
+        if (anchor.transform.position.y < parentTransform.position.y)
+            Physics.Raycast(anchor.transform.position, Vector3.up, out raycastHit, 99f, mask);
+        else
+            Physics.Raycast(anchor.transform.position, Vector3.down, out raycastHit, 99f, mask);
+        Physics.queriesHitBackfaces = false;
+
 
         if (!raycastHit.collider)
-            throw new CannotBuildHereException();
+            throw new CannotBuildHereException("No Hitpoint On Grid!");
 
         // Get gridNumber of the grid the User is holding the brick in
         int heldInGridNumber = GetGridNumber(
