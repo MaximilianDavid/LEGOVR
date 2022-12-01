@@ -94,6 +94,7 @@ MonoBehaviour:
   buildManualPages:
   - {fileID: 2100000, guid: 49ccf5230c9dd29469e6836c79138d48, type: 2}
   - {fileID: 2100000, guid: a655697c63963b34fb49f4926518cce3, type: 2}
+  circularDrive: {fileID: 0}
   gridWidth: 16
   gridLength: 16
   gridHeight: 24
@@ -102,6 +103,9 @@ MonoBehaviour:
   brickHeight: 9.6
   basePlateHeight: 0.65
   scale: 1
+  currentGlobalRotation: 0
+  plateOrigin: {x: 0, y: 0, z: 0}
+  plateCenter: {x: 0, y: 0, z: 0}
   maximumSnapDistance: 14.400001
   previewLineWidth: 0.001
 --- !u!1001 &8647800450195075899

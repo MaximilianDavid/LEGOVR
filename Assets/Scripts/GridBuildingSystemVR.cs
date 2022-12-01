@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 
 /*
@@ -31,6 +32,7 @@ public class GridBuildingSystemVR : MonoBehaviour
     [SerializeField] private Transform rightControllerTransform;
     [SerializeField] private Renderer buildManualScreen;
     [SerializeField] private List<Material> buildManualPages;
+    [SerializeField] private CircularDrive circularDrive;
 
 
     private int currentBuildManualPage = 0;
@@ -69,6 +71,11 @@ public class GridBuildingSystemVR : MonoBehaviour
     [SerializeField] private float basePlateHeight = .65f;
     [SerializeField] private float scale = 1f;
 
+    [SerializeField] private float currentGlobalRotation = 0f;
+
+    [SerializeField] private Vector3 plateOrigin;
+    [SerializeField] private Vector3 plateCenter;
+
 
 
     [SerializeField] private float maximumSnapDistance = 9.6f * 1.5f;
@@ -79,6 +86,8 @@ public class GridBuildingSystemVR : MonoBehaviour
 
     private List<GridXZ<GridObject>> grids;
     private PlacedObjectTypeSO.Dir dir = PlacedObjectTypeSO.Dir.Down;
+
+   
 
 
     public event EventHandler OnSelectedBrickChanged;
@@ -297,6 +306,7 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         Instance = this;
 
+        plateOrigin = transform.position;
 
         this.scale = transform.localScale.x;
         this.brickHeight = 9.6f * scale;
@@ -305,7 +315,13 @@ public class GridBuildingSystemVR : MonoBehaviour
         this.basePlateHeight = .65f * scale * 2;
         this.maximumSnapDistance = brickHeight * 1.5f;
 
-        
+
+        plateCenter = new Vector3(
+            plateOrigin.x + (80 * scale),
+            plateOrigin.y,
+            plateOrigin.z + (80 * scale));
+
+
         grids = new List<GridXZ<GridObject>>();
 
 
@@ -520,8 +536,17 @@ public class GridBuildingSystemVR : MonoBehaviour
     }
 
 
+
+
+
+
+
+
     private void Update()
     {
+        // Update Rotation
+        UpdateRotation();
+
         if(rightDirectionAction.GetStateDown(SteamVR_Input_Sources.Any))
         {
             // Advance manual page
@@ -600,6 +625,7 @@ public class GridBuildingSystemVR : MonoBehaviour
                 visualBrick.transform.position.y + brickHeight * 0.5f,
                 visualBrick.transform.position.z));
         grids[heldInGridNumber].GetXZ(anchor.transform.position, out int heldX, out int heldZ);
+
 
         // Calculate gridNumber of where the rayCast hits
         int gridNumber = GetGridNumber(raycastHit.point);
@@ -690,6 +716,41 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+
+
+    /*
+     *  Updates the base plate's rotation and the bricks connected to it
+     */
+    public void UpdateRotation()
+    {
+        // Check if plate needs to be rotated
+        if (currentGlobalRotation != (circularDrive.outAngle % 360) * 1.5f)
+        {
+            // Rotate plate around center
+            float rotateBy = currentGlobalRotation - (circularDrive.outAngle % 360) * 1.5f;
+            transform.RotateAround(plateCenter, new Vector3(0, 1, 0), rotateBy);
+            // Rotate all connected bricks around center
+            rotateConnectedBricksBy(rotateBy);
+            // Save new rotation
+            currentGlobalRotation = (circularDrive.outAngle % 360) * 1.5f;
+        }
+    }
+
+
+
+    /*
+     *  Rotates all bricks connected to the base plate around the plate's center by the given angle
+     */
+    public void rotateConnectedBricksBy(float angle)
+    {
+        foreach(List<PlacedObject> bricksInGrid in placedBricks)
+        {
+            foreach(PlacedObject brick in bricksInGrid)
+            {
+                brick.transform.RotateAround(plateCenter, new Vector3(0, 1, 0), angle);
+            }
+        }
+    }
 
 
 
@@ -909,6 +970,7 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+    
 
 
 
