@@ -4049,6 +4049,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 81957606831183701, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 115797304587192498, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4089,6 +4094,16 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 268636702257776431, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279937896983014433, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 569030362503277485, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4109,6 +4124,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 596684954841999148, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 599226480237604750, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4128,6 +4148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 621332988187703254, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 771488311914335371, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4209,6 +4234,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 1153513256879620465, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1187843047294328904, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4229,6 +4259,21 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 1214535132514523781, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224070055404243433, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429213257937947889, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1440854951326869229, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4268,6 +4313,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625679040164679521, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693275200296206804, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1732701004883970533, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4329,6 +4384,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 1900455732999605596, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1944869075436156799, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4348,6 +4408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967797047374783707, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2281699857053155463, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4389,6 +4454,16 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 2431560910891090983, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438967197238651889, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2606753209967978026, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4409,6 +4484,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 2634423600731937801, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2683528196134916013, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4428,6 +4508,26 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772247260633342611, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811258792155632832, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855589814591396246, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890981661084096471, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2953613865861751831, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4469,6 +4569,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 3282063793524870555, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3289703275055572871, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4488,6 +4593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318830379626826558, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3346403643091347975, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4549,6 +4659,31 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 3555130715117481550, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636952405434150122, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802774042722625533, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845459515244534855, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900727639989159160, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3906049821905423450, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4588,6 +4723,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149873859243311323, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399192672770051059, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4436116381965764439, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4629,6 +4774,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 4507401687820404510, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4562681139182681123, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4648,6 +4798,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605404889681880004, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666962186875825727, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4716467704283084926, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4689,6 +4849,16 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 4903601390030368276, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913557132391153334, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5053004659813616808, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4708,6 +4878,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087367600270996240, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133872349286643601, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5158489571490285566, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4754,6 +4934,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bricks (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5509304966685340640, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5647901351543101614, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4774,6 +4959,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 5681965880630563420, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5803590074784431313, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4794,6 +4984,36 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 5872033104461646192, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879822654984782054, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943808969333711691, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956369137338291444, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959411677678101044, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998368160572147239, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6043947130876820120, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4813,6 +5033,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049807279222922864, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202898171841835334, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6281377152599758130, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -4874,6 +5104,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 6390592060149987341, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6501620315676208880, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4913,6 +5148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546616262160592514, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6547787104095877660, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5004,6 +5244,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 6588833164966231714, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6590647468162403319, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5043,6 +5288,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663892057027401750, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831410442386346011, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850479109988419661, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5084,6 +5339,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 7017452801971446587, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7063945308151067488, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5104,6 +5364,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 7226218475438212486, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7253199611750991348, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5124,6 +5389,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 7274663755543697036, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7278651022758909396, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5143,6 +5413,26 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279053554049753217, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297998746322612739, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343150924854878136, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408505046828354268, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7412146319887700859, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5183,6 +5473,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591139798291414596, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7616416688968510387, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7786280189224372285, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5284,6 +5584,16 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 7895553092449243630, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996339311006570407, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8002734563636716038, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5323,6 +5633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075985520165336024, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8117931348482865450, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5364,6 +5679,16 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 8528929713134028786, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677638955390101470, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8713127933158365286, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5403,6 +5728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783260342889720968, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8809811070279030208, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
@@ -5444,6 +5774,11 @@ PrefabInstance:
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
       objectReference: {fileID: 0}
+    - target: {fileID: 9020308257553159379, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9130673525061977417, guid: 8065dc25adcf9f347a1ed6246387f45a,
         type: 3}
       propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5463,6 +5798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: releaseBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153153047079080712, guid: 8065dc25adcf9f347a1ed6246387f45a,
+        type: 3}
+      propertyPath: showAnchors
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8065dc25adcf9f347a1ed6246387f45a, type: 3}

@@ -131,18 +131,22 @@ public class PlacedObject : MonoBehaviour
 
     /*
      *  Returns the direction, closest to the current rotation
-     *  of the object
+     *  of the object compared to the baseplate
      */
     public PlacedObjectTypeSO.Dir GetClosestDir()
     {
-        Vector3 angles = transform.eulerAngles;
+        // Construct directional angle depending on the base plate's rotation
+        float angleBetweenBrickAndPlate = 
+            transform.eulerAngles.y + GridBuildingSystemVR.Instance.currentGlobalRotation;
 
-        float [] difs = { 
-            Mathf.Abs(Mathf.DeltaAngle(angles.y, 0)),
-            Mathf.Abs(Mathf.DeltaAngle(angles.y, 90)),
-            Mathf.Abs(Mathf.DeltaAngle(angles.y, 180)),
-            Mathf.Abs(Mathf.DeltaAngle(angles.y, 270))
+
+        float[] difs = {
+            Mathf.Abs(Mathf.DeltaAngle(angleBetweenBrickAndPlate, 0)),
+            Mathf.Abs(Mathf.DeltaAngle(angleBetweenBrickAndPlate, 90)),
+            Mathf.Abs(Mathf.DeltaAngle(angleBetweenBrickAndPlate, 180)),
+            Mathf.Abs(Mathf.DeltaAngle(angleBetweenBrickAndPlate, 270))
             };
+
 
         float min = difs.Min();
 

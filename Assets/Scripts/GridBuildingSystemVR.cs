@@ -71,10 +71,10 @@ public class GridBuildingSystemVR : MonoBehaviour
     [SerializeField] private float basePlateHeight = .65f;
     [SerializeField] private float scale = 1f;
 
-    [SerializeField] private float currentGlobalRotation = 0f;
+    [SerializeField] public float currentGlobalRotation = 0f;
 
     [SerializeField] private Vector3 plateOrigin;
-    [SerializeField] private Vector3 plateCenter;
+    [SerializeField] public Vector3 plateCenter;
 
 
 
@@ -190,6 +190,10 @@ public class GridBuildingSystemVR : MonoBehaviour
                 heldBrick.makeKinematic();
                 brickTransform.position = snapPoint.worldLocation;
                 brickTransform.rotation = GetPlacedObjectRotation(heldBrick);
+
+                // Rotate brick around plate's center
+                brickTransform.RotateAround(plateCenter, new Vector3(0, 1, 0), -currentGlobalRotation);
+
 
                 Debug.Log("Brick occupies:");
                 foreach (Vector2Int gridPosition in gridPositionList)
@@ -587,6 +591,9 @@ public class GridBuildingSystemVR : MonoBehaviour
 
     /*
      *  Calculates a snap point for the given brick object
+     *  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     *  BRICK NEEDS TO BE ROTATED AROUND PLATE CENTER WHEN PLACING
+     *  OTHERWISE SNAPPOINT IS NOT CORRECT
      */
     public SnapPoint GetSnapPoint(PlacedObject placedObject)
     {
@@ -624,12 +631,19 @@ public class GridBuildingSystemVR : MonoBehaviour
                 visualBrick.transform.position.x,
                 visualBrick.transform.position.y + brickHeight * 0.5f,
                 visualBrick.transform.position.z));
-        grids[heldInGridNumber].GetXZ(anchor.transform.position, out int heldX, out int heldZ);
+
+
+        // Reverse rotation for brick anchor
+        //Vector3 anchorPointBeforeRotation = ReverseRotation(anchor.transform.position);
+        //grids[heldInGridNumber].GetXZ(anchorPointBeforeRotation, out int heldX, out int heldZ);
 
 
         // Calculate gridNumber of where the rayCast hits
+        Debug.Log("Hitpoint: " + raycastHit.point);
+        Vector3 hitPointBeforeRotation = ReverseRotation(raycastHit.point);
+        Debug.Log("Hitpoint after reverse : " + hitPointBeforeRotation);
         int gridNumber = GetGridNumber(raycastHit.point);
-        grids[gridNumber].GetXZ(raycastHit.point, out int hitX, out int hitZ);
+        grids[gridNumber].GetXZ(hitPointBeforeRotation, out int hitX, out int hitZ);
 
 
         // Handle Edge cases
@@ -647,7 +661,7 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
         // Shift main snappoint according to current rotation
-        Vector3 snapWorldLocation = grids[gridNumber].GetWorldPosition(hitX, hitZ);
+        Vector3 snapWorldLocation = grids[gridNumber].GetWorldPosition(hitX, hitZ); // No reverse rotation necessary?
         snapWorldLocation = ShiftAnchorSnapToMainAnchorSnap(snapWorldLocation, dir, placedObject.placedObjectTypeSO);
         grids[gridNumber].GetXZ(snapWorldLocation, out int x, out int z);
         Vector2Int anchorLocationOnGrid = new Vector2Int(x, z);
@@ -718,6 +732,10 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+
+
+
+
     /*
      *  Updates the base plate's rotation and the bricks connected to it
      */
@@ -738,6 +756,16 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+
     /*
      *  Rotates all bricks connected to the base plate around the plate's center by the given angle
      */
@@ -755,6 +783,19 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+    /*
+     *  Returns whether a brick occupying the given positions in the given grid number would have
+     *  base support
+     */
     public bool HasPotentialSupport(List<Vector2Int> gridPositionList, int gridNumber = 0)
     {
         // Bricks on Baseplate always have support
@@ -773,6 +814,24 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         return false;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -819,6 +878,21 @@ public class GridBuildingSystemVR : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
      *  Shifts the given position equal to the amount in given grid spaces
      */
@@ -829,6 +903,72 @@ public class GridBuildingSystemVR : MonoBehaviour
 
         return new Vector3(shiftedX, position.y, shiftedZ);
     }
+
+
+
+
+
+
+
+
+
+
+
+    /*
+     *  Returns the position with the plate's current rotation reversed
+     */
+    public Vector3 ReverseRotation(Vector3 position)
+    {
+        Vector3 positionBeforeRotation = 
+            RotatePointAroundPivot(position, plateCenter, new Vector3(0, currentGlobalRotation, 0));
+
+        return positionBeforeRotation;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+     *  Returns the given point rotated around the given pivot by the given angles
+     */
+    public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
+    {
+        // Translate Point to pivot
+        Vector3 dir = point - pivot;
+        // Rotate point
+        dir = Quaternion.Euler(angles) * dir;
+        // Translate back
+       Vector3 rotatedPoint = dir + pivot;
+
+        return rotatedPoint;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

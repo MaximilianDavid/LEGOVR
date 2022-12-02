@@ -63,6 +63,14 @@ public class Ghost : MonoBehaviour
             transform.position = targetPosition;
             //Debug.Log("Ghost Position: " + targetPosition);
             transform.rotation = GridBuildingSystemVR.Instance.GetPlacedObjectRotation();
+
+            // Rotate ghost around plate center
+            transform.RotateAround(
+                GridBuildingSystemVR.Instance.plateCenter, 
+                new Vector3(0, 1, 0), 
+                -GridBuildingSystemVR.Instance.currentGlobalRotation);
+
+            
         }
         catch (Exception e)
         {
