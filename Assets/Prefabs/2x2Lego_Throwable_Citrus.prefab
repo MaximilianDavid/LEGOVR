@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -4755807729984327010}
   - component: {fileID: 2269535727266105853}
   - component: {fileID: 2381780677131166347}
-  - component: {fileID: 7019029665107067077}
   m_Layer: 0
   m_Name: 2x2Lego_Throwable_Citrus
   m_TagString: Untagged
@@ -198,22 +197,7 @@ MonoBehaviour:
   placedObjectTypeSO: {fileID: 11400000, guid: d54a22a0f85062a48bc02b4616a7692e, type: 2}
   occupiedGridPositions: []
   gridNumber: -1
---- !u!114 &7019029665107067077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8202213251277457630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad77666522338cf49ba83b80b25e6476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachForce: 800
-  attachForceDamper: 25
-  attachMode: 0
-  attachmentFlags: 0
+  showAnchors: 0
 --- !u!1001 &7826326326521262450
 PrefabInstance:
   m_ObjectHideFlags: 0
