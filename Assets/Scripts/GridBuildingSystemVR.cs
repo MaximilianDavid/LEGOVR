@@ -256,7 +256,8 @@ public class GridBuildingSystemVR : MonoBehaviour
      */
     public void pickupBrick(PlacedObject placedObject)
     {
-        placedObject.makePhysicsEnabled();
+        //placedObject.makePhysicsEnabled();
+        placedObject.makeKinematic();
         placedObject.pickUp();
 
         
