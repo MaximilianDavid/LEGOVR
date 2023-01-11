@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using Valve.VR.InteractionSystem;
 
 /*
  *  An object that is meant to be placed into a Grid
@@ -12,11 +13,19 @@ using UnityEngine;
 public class PlacedObject : MonoBehaviour
 {
     public PlacedObjectTypeSO placedObjectTypeSO;
+    public Throwable throwable;
+    public Interactable interactable;
+
     private Vector3 worldPosition;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private Vector2Int origin;
     private PlacedObjectTypeSO.Dir dir;
+
+
+    public BrickLineRenderer attachedBrickLineRenderer;
+    public Ghost assignedGhost;
+
 
     [SerializeField] private List<Vector2Int> occupiedGridPositions = new List<Vector2Int>();
     [SerializeField] private HashSet<PlacedObject> connectedToUpwards;
@@ -76,8 +85,17 @@ public class PlacedObject : MonoBehaviour
 
 
 
-    private void Awake()
+    public void Start()
     {
+        // Setup fields
+        throwable = GetComponent<Throwable>();
+        interactable = GetComponent<Interactable>();
+
+        // Connect Signals
+        throwable.onPickUp.AddListener(this.onPickup);
+        throwable.onPickUp.AddListener(delegate { GridBuildingSystemVR.Instance.pickupBrick(this); });
+        throwable.onDetachFromHand.AddListener(delegate { GridBuildingSystemVR.Instance.releaseBrick(this); });
+
         // Setup connection Hashes
         connectedToDownwards = new HashSet<PlacedObject>();
         connectedToUpwards = new HashSet<PlacedObject>();
@@ -108,10 +126,10 @@ public class PlacedObject : MonoBehaviour
 
 
 
-    private void LateUpdate()
+    public void onPickup()
     {
-        if (!hasBaseSupport && !pickedUp && rigidbody.isKinematic)
-            makePhysicsEnabled();
+        makeKinematic();
+        pickUp();
     }
 
 
@@ -119,6 +137,82 @@ public class PlacedObject : MonoBehaviour
 
 
 
+    private void LateUpdate()
+    {
+        if (!hasBaseSupport && !pickedUp && rigidbody.isKinematic)
+            makePhysicsEnabled();
+
+        if (!pickedUp)
+            return;
+
+        try
+        {
+            // Draw Lines
+            Vector3 hitPoint = getRaycastWithPlate();
+            attachedBrickLineRenderer.drawAnchorLines(hitPoint);
+            attachedBrickLineRenderer.Activate();
+
+            // Update Ghost
+            assignedGhost.UpdateGhost();
+            assignedGhost.Activate();
+        }
+        catch (GridBuildingSystemVR.NoIntersectionException e)
+        {
+            attachedBrickLineRenderer.Deactivate();
+
+            // Deactivate Ghost
+            assignedGhost.Deactivate();
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /*
+     *  Returns the intersection point of a ray cast down from the brick towards the plate
+     *  
+     * 
+     *  THROWS EXCEPTION IF NO INTESECTION FOUND
+     */
+    public Vector3 getRaycastWithPlate()
+    {
+        // Get main anchor
+        GameObject anchor = GetAnchorForCurrentRotation();
+
+
+        // Setup LayerMask
+        RaycastHit hit;
+        LayerMask previewMask = LayerMask.GetMask("GridBuildingSystem", "Brick");
+
+
+        // Cast Ray to buildplate
+        Physics.queriesHitBackfaces = true;
+        if (anchor.transform.position.y < GridBuildingSystemVR.Instance.parentTransform.position.y)
+            Physics.Raycast(anchor.transform.position, Vector3.up, out hit, 999f, previewMask);
+        else
+            Physics.Raycast(anchor.transform.position, Vector3.down, out hit, 999f, previewMask);
+        Physics.queriesHitBackfaces = false;
+
+        Debug.DrawRay(anchor.transform.position, Vector3.down, Color.green);
+
+        if (!hit.collider)
+            throw new GridBuildingSystemVR.NoIntersectionException("No intersection with baseplate!");
+
+        return hit.point;
+    }
+
+
+
+
+
+    /*
+     *  Returns all positions the brick occupies within the grid
+     */
     public List<Vector2Int> GetGridPositionList()
     {
         return placedObjectTypeSO.GetGridPositionList(origin, dir);
