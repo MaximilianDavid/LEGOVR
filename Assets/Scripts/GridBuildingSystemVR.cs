@@ -34,6 +34,7 @@ public class GridBuildingSystemVR : MonoBehaviour
     [SerializeField] private List<Material> buildManualPages;
     [SerializeField] private CircularDrive circularDrive;
 
+    public int buildManual;
 
     private int currentBuildManualPage = 0;
 
@@ -165,7 +166,7 @@ public class GridBuildingSystemVR : MonoBehaviour
         }
 
 
-
+        LoadManualFromResources();
         // Set materials for manual screen
         Material[] screenMats = buildManualScreen.materials;
         screenMats[1] = buildManualPages[0];
@@ -1128,6 +1129,45 @@ public class GridBuildingSystemVR : MonoBehaviour
         }
         return null;
     }
+
+
+
+
+
+
+    /*
+     *  Loads the specified manual from the Resources folder
+     */
+    private void LoadManualFromResources()
+    {
+        int manualPageCount = -1;
+        string manualPageSet = "";
+
+        // Setup values for loading the materials
+        if(buildManual == 1)
+        {
+            manualPageCount = 22;
+            manualPageSet = "Set01";
+        }
+        else
+        {
+            manualPageCount = 18;
+            manualPageSet = "Set02";
+        }
+
+        // Load Control Screens
+        for(int i = 1; i <= 5; i++)
+        {
+            buildManualPages.Add(Resources.Load<Material>("ControlScreens/Controls Screen " + i));
+        }
+
+        // Load Manual Pages
+        for(int i = 1; i <= manualPageCount; i++)
+        {
+            buildManualPages.Add(Resources.Load<Material>("InstructionMaterials/" + manualPageSet + "/" + i));
+        }
+    }
+
 
 
 

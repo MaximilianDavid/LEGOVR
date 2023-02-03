@@ -7216,6 +7216,11 @@ PrefabInstance:
       objectReference: {fileID: 1634336030}
     - target: {fileID: 3247183866375909154, guid: 8e1ca6a5b5ee68347ad744e5713cef81,
         type: 3}
+      propertyPath: buildManual
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247183866375909154, guid: 8e1ca6a5b5ee68347ad744e5713cef81,
+        type: 3}
       propertyPath: circularDrive
       value: 
       objectReference: {fileID: 1165553733}
@@ -7582,7 +7587,7 @@ PrefabInstance:
     - target: {fileID: 3247183866375909154, guid: 8e1ca6a5b5ee68347ad744e5713cef81,
         type: 3}
       propertyPath: buildManualPages.Array.size
-      value: 27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3247183866375909154, guid: 8e1ca6a5b5ee68347ad744e5713cef81,
         type: 3}
