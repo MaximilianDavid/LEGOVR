@@ -76,6 +76,7 @@ public class Ghost : MonoBehaviour
 
 
         }
+        
         catch (Exception e)
         {
             Debug.LogError(e.Message);
