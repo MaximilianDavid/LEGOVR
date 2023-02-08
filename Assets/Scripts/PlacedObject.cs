@@ -43,6 +43,8 @@ public class PlacedObject : MonoBehaviour
     private Rigidbody rigidbody;
 
 
+    public Material material;
+
     
     private GameObject anchor;
     private GameObject frontLeftAnchor;
@@ -90,6 +92,7 @@ public class PlacedObject : MonoBehaviour
         // Setup fields
         throwable = GetComponent<Throwable>();
         interactable = GetComponent<Interactable>();
+        material = GetComponentInChildren<MeshRenderer>().material;
 
         // Connect Signals
         throwable.onPickUp.AddListener(this.onPickup);
