@@ -1,5 +1,5 @@
 # VRBrickBuilder
-This system was used to conduct pilot studies for the big master project and is currently under development for a user study as part of a master thesis.
+This system was used to conduct a user study as part of a master's thesis.
 
 
 
