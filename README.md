@@ -1,4 +1,4 @@
-# VRBrickBuilder
+# LEGO VR
 This system was used to conduct a user study as part of a master's thesis.
 
 ## Instructions for usage
